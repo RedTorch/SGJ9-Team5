@@ -13,16 +13,17 @@ public class FPController : MonoBehaviour
 {
     private Vector3 TargetVelocity = new Vector3(0f,0f,0f);
     private Vector3 CurrVelocity = new Vector3(0f,0f,0f);
-    private float MoveSpeed = 12f;
-    private float LookSpeed = 3f;
+    [SerializeField] private float MoveSpeed = 12f;
+    [SerializeField] private float LookSpeed = 3f;
     private Vector2 CurrLookRotation = new Vector2(0f,0f);
     private Rigidbody rb;
     [SerializeField] private GameObject camroot;
 
     private bool isDashing = false;
     private float dashTimer = 0f;
-    private float dashDuration = 0.15f;
-    private float dashSpeed = 75f;
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashSpeed = 75f;
     private Vector3 dashVector;
     [SerializeField] private AnimationCurve dashCurve;
 
@@ -55,7 +56,7 @@ public class FPController : MonoBehaviour
             }
         }
         else {
-            if(Input.GetButtonDown("Fire3")) {
+            if(Input.GetButtonDown("Fire3") && canDash) {
                 isDashing = true;
                 dashTimer = dashDuration;
                 dashVector = ((transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"))).normalized * dashSpeed;
