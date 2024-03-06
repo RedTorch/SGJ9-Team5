@@ -38,7 +38,7 @@ public class FPController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CurrLookRotation.x += Input.GetAxis("Mouse X") * LookSpeed;
         CurrLookRotation.y = Mathf.Clamp(CurrLookRotation.y + (Input.GetAxis("Mouse Y") * LookSpeed),-80f,80f);
@@ -66,7 +66,8 @@ public class FPController : MonoBehaviour
                 camAnimator.SetFloat("runSpeed", CurrVelocity.magnitude);
             }
             // rb.velocity = (transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z);
-            rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity);
+            // rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity);
+            rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity, ForceMode.VelocityChange);
         }
     }
 
