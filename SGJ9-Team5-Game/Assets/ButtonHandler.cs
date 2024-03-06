@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class ButtonHandler : MonoBehaviour
 {
     private ShopManager mysm;
+    public TMP_Text myLabel;
+    private int indexOfLinkedObj;
+    private string labelText = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +21,16 @@ public class ButtonHandler : MonoBehaviour
         
     }
 
-    void onInstan(GameObject parentCaller)
+    public void onInstan(ShopManager parentShopManager, GameObject linkedItem)
     {
-        mysm = parentCaller.GetComponent<ShopManager>();
+        mysm = parentShopManager;
+        labelText = linkedItem.GetComponent<CollectibleManager>().displayName + " -- " + linkedItem.GetComponent<CollectibleManager>().shop_price + "円";
+        myLabel.text = labelText;
     }
 
     public void OnPressedCall()
     {
-        //
+        // play a oneshot sound or something
+        mysm.OnItemSelect(indexOfLinkedObj);
     }
 }

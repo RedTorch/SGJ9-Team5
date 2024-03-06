@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
-    [SerializeField] private string displayName = "defaultName";
+    public string displayName = "defaultName";
     [SerializeField] private Sprite icon;
     public int points = 0;
     public int weight = 1; // 1-3 range of; default carry capacity of 4; +2 +4 +6 for each size of pack
-    public int price = 0;
-
+    public int shop_price = 0;
+    public string shop_description = "REGULAR CUBE:\nI am just a regular cube, no survival utility whatsoever!";
     
     // Start is called before the first frame update
     void Start()
