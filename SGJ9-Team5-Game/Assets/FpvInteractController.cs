@@ -72,6 +72,11 @@ public class FpvInteractController : MonoBehaviour
                 pickup(hit.transform.gameObject);
             }
             // else if an interactable, etcetera, do other stuff?? such as call something on an object to turn off the breaker etc.
+            else if(hit.transform.gameObject.GetComponent<InteractableManager>())
+            {
+                print("interaction initiated");
+                hit.transform.gameObject.GetComponent<InteractableManager>().OnInteract();
+            }
         }
     }
 

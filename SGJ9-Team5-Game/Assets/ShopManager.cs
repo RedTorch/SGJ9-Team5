@@ -19,6 +19,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject[] junkItems;
     [SerializeField] private GameObject[] usefulItems;
     [SerializeField] private List<GameObject> testList = new List<GameObject>();
+
+    [SerializeField] private int money = 10000;
     private float chanceOfGettingUseful = 0.4f;
     private int maxShopItems = 8;
     private int currSelectedItemIndex = -1;
@@ -34,13 +36,17 @@ public class ShopManager : MonoBehaviour
         //
     }
 
-    void OnShopEnter()
+    public void OnShopEnter()
     {
+        gameObject.SetActive(true);
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    void OnShopExit()
+    public void OnShopExit()
     {
+        gameObject.SetActive(false);
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
