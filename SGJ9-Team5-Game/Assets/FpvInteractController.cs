@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.EditorTools;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class FpvInteractController : MonoBehaviour
 {
@@ -11,16 +13,18 @@ public class FpvInteractController : MonoBehaviour
     [SerializeField] private Transform originTransform;
     [SerializeField] private GameObject hotbarRoot;
     [SerializeField] private GameObject itemIconPrefab;
+    [SerializeField] private TMP_Text weightText;
     [SerializeField] private int defaultCarryingCapacity = 4;
     [SerializeField] private int addedCarryingCapacity = 0;
     private int carryingCapacity = 0;
+    private int currCarriedWeight = 0;
     private int selectedSlot = 0;
     private List<GameObject> inventory = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         updateHotbar();
-        updateCarryingCapacity();
+        updateWeight();
     }
 
     // Update is called once per frame
@@ -73,26 +77,30 @@ public class FpvInteractController : MonoBehaviour
 
     private void pickup(GameObject obj)
     {
+        if(obj.GetComponent<CollectibleManager>().weight > carryingCapacity - currCarriedWeight)
+        {
+            // return a failure due to weight limit! maybe flash-red the weight capacity, or display an onscreen message, or both!!
+            return;
+        }
         obj.GetComponent<CollectibleManager>().OnCollectByPlayer();
         inventory.Add(obj);
         updateHotbar();
         if(inventory.Count==1)
         {
-            selectedSlot = 1;
-            updateHotbar();
+            selectedSlot = 1; 
         }
+        updateOnPickupDrop();
     }
 
     private void drop(int indexOf)
     {
         inventory[indexOf].GetComponent<CollectibleManager>().OnDropByPlayer(originTransform.position+(originTransform.forward*interactRange/2f));
         inventory.RemoveAt(indexOf);
-        updateHotbar();
         if(selectedSlot>inventory.Count)
         {
             selectedSlot = inventory.Count;
-            updateHotbar();
         }
+        updateOnPickupDrop();
     }
 
     private void updateHotbar()
@@ -113,13 +121,20 @@ public class FpvInteractController : MonoBehaviour
         }
     }
 
-    private void updateCarryingCapacity()
+    private void updateWeight()
     {
         carryingCapacity = defaultCarryingCapacity + addedCarryingCapacity;
+        currCarriedWeight = 0;
+        foreach(GameObject go in inventory)
+        {
+            currCarriedWeight += go.GetComponent<CollectibleManager>().weight;
+        }
+        weightText.text = "重さ" + currCarriedWeight + "/" + carryingCapacity;
     }
 
-    private void setAddedCarryingCapacity(int newCap)
+    private void updateOnPickupDrop()
     {
-        addedCarryingCapacity = newCap;
+        updateHotbar();
+        updateWeight();
     }
 }
