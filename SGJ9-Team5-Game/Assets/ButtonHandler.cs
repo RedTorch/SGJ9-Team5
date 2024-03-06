@@ -21,11 +21,12 @@ public class ButtonHandler : MonoBehaviour
         
     }
 
-    public void onInstan(ShopManager parentShopManager, GameObject linkedItem)
+    public void onInstan(ShopManager parentShopManager, GameObject linkedItem, int newIndexOfLinkedObj)
     {
         mysm = parentShopManager;
         labelText = linkedItem.GetComponent<CollectibleManager>().displayName + " -- " + linkedItem.GetComponent<CollectibleManager>().shop_price + "円";
         myLabel.text = labelText;
+        indexOfLinkedObj =  newIndexOfLinkedObj;
     }
 
     public void OnPressedCall()

@@ -53,6 +53,11 @@ public class ShopManager : MonoBehaviour
     public void OnItemSelect(int indexOfItem) // called by individual sold item buttons
     {
         // TODO: prevent selection if the item is sold out; display message
+        if(goods[indexOfItem]==null)
+        {
+            currSelectedItemIndex = -1;
+            return;
+        }
         descText.text = goods[indexOfItem].GetComponent<CollectibleManager>().shop_description;
         buyText.text = "買う - " + goods[indexOfItem].GetComponent<CollectibleManager>().shop_price + "";
         currSelectedItemIndex = indexOfItem;
@@ -60,9 +65,10 @@ public class ShopManager : MonoBehaviour
     
     public void OnSelectedItemBuy() // called by the "buy" button, but only valid when an item is selected
     {
-        if(currSelectedItemIndex==-1 || !goods[currSelectedItemIndex]) // OR u dont have enough money u broke mfer
+        if(currSelectedItemIndex==-1 || goods[currSelectedItemIndex]==null) // OR u dont have enough money u broke mfer
         {
             // play the womp womp sound
+            currSelectedItemIndex = -1;
             return;
         }
         // play kaching sound
@@ -72,6 +78,7 @@ public class ShopManager : MonoBehaviour
         // set status to bought-- cannot be bought again
         goods[currSelectedItemIndex] = null;
         buttonLabels[currSelectedItemIndex].text = "<<< 売り切れ >>>";
+        currSelectedItemIndex = -1;
     }
 
     public void GenerateShop(List<GameObject> gos)
@@ -108,7 +115,8 @@ public class ShopManager : MonoBehaviour
         foreach (Transform child in shopItemListRoot.transform) children.Add(child.gameObject);
         children.ForEach(child => Destroy(child));
         // generate buttons for each element in the "goods" List
-        while(shopItems.Count>0)
+        int limit = shopItems.Count;
+        for(int i = 0; i < limit; i++)
         {
             // add object to goods
             int randomInt = (int)(Mathf.Floor(UnityEngine.Random.Range(0f,1f*shopItems.Count)));
@@ -119,7 +127,7 @@ public class ShopManager : MonoBehaviour
             buttonLabels.Add(newButton.GetComponent<ButtonHandler>().myLabel);
             /* call onInstan in ButtonHandler to pass on this shop handler component
             and a reference to the GameObject that it represents (so it can get the info*/
-            newButton.GetComponent<ButtonHandler>().onInstan(this.GetComponent<ShopManager>(), shopItems[randomInt]);
+            newButton.GetComponent<ButtonHandler>().onInstan(this.GetComponent<ShopManager>(), shopItems[randomInt], i);
             // delete shopItems[randomInt] from shopItems
             shopItems.RemoveAt(randomInt);
         }
