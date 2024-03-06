@@ -72,6 +72,10 @@ public class ShopManager : MonoBehaviour
     {
         // generate a "goods" list mixing useful and useless items
         List<GameObject> shopItems = new List<GameObject>();
+        foreach(GameObject go in gos)
+        {
+            shopItems.Add(go);
+        }
         int remainingSpaces = maxShopItems - gos.Count;
         if(remainingSpaces>0)
         {
@@ -93,7 +97,10 @@ public class ShopManager : MonoBehaviour
         {
             print("error: remaining vital items exceeds max shop spaces. Excess will be removed at random.");
         }
-        // TODO: clear all children of the goods list root before adding new labels!
+        // clear all children of the goods list root before adding new labels!
+        var children = new List<GameObject>();
+        foreach (Transform child in shopItemListRoot.transform) children.Add(child.gameObject);
+        children.ForEach(child => Destroy(child));
         // generate buttons for each element in the "goods" List
         while(shopItems.Count>0)
         {
