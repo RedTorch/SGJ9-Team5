@@ -27,7 +27,8 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateShop(testList);
+        GenerateShop(testList); //in actual game, GenerateShop will be called externally by the class that scatters objects, so that the leftovers can be sold in the shop
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,6 +42,8 @@ public class ShopManager : MonoBehaviour
         gameObject.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        player.gameObject.GetComponent<FPController>().setFreeze(true);
+        player.gameObject.GetComponent<FpvInteractController>().setFreeze(true);
     }
 
     public void OnShopExit()
@@ -48,6 +51,8 @@ public class ShopManager : MonoBehaviour
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        player.gameObject.GetComponent<FPController>().setFreeze(false);
+        player.gameObject.GetComponent<FpvInteractController>().setFreeze(false);
     }
 
     public void OnItemSelect(int indexOfItem) // called by individual sold item buttons

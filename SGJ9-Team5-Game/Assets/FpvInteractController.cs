@@ -20,6 +20,7 @@ public class FpvInteractController : MonoBehaviour
     private int currCarriedWeight = 0;
     private int selectedSlot = 0;
     private List<GameObject> inventory = new List<GameObject>();
+    private bool isFrozen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,10 @@ public class FpvInteractController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isFrozen)
+        {
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             InteractWith();
@@ -141,5 +146,10 @@ public class FpvInteractController : MonoBehaviour
     {
         updateHotbar();
         updateWeight();
+    }
+
+    public void setFreeze(bool set)
+    {
+        isFrozen = set;
     }
 }

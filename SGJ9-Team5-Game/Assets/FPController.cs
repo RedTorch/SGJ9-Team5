@@ -28,6 +28,7 @@ public class FPController : MonoBehaviour
     [SerializeField] private AnimationCurve dashCurve;
 
     [SerializeField] private Animator camAnimator;
+    private bool isFrozen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,10 @@ public class FPController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(isFrozen)
+        {
+            return;
+        }
         CurrLookRotation.x += Input.GetAxis("Mouse X") * LookSpeed;
         CurrLookRotation.y = Mathf.Clamp(CurrLookRotation.y + (Input.GetAxis("Mouse Y") * LookSpeed),-80f,80f);
         transform.localRotation = Quaternion.Euler(0f,CurrLookRotation.x,0f);
@@ -80,5 +85,9 @@ public class FPController : MonoBehaviour
         else {
             // pause game, etc..
         }
+    }
+    public void setFreeze(bool set)
+    {
+        isFrozen = set;
     }
 }
