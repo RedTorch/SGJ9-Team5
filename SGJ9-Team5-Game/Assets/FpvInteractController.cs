@@ -11,6 +11,7 @@ public class FpvInteractController : MonoBehaviour
     [SerializeField] private Transform originTransform;
     [SerializeField] private GameObject hotbarRoot;
     [SerializeField] private GameObject itemIconPrefab;
+    private int selectedSlot = 0;
     private List<GameObject> inventory = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,31 @@ public class FpvInteractController : MonoBehaviour
         {
             InteractWith();
         }
+        checkForSelectedSlot();
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if(selectedSlot>0)
+            {
+                drop(selectedSlot-1);
+            }
+        }
+    }
+    private void checkForSelectedSlot()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha9) && inventory.Count>=10)
+        {
+            selectedSlot = 10;
+            return;
+        }
+        for (int i = 1; i <= inventory.Count; i++)
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha0 + i))
+            {
+                selectedSlot = i;
+                return;
+            }
+        }
+        print("selected slot:" + selectedSlot);
     }
 
     void InteractWith()
@@ -45,6 +71,10 @@ public class FpvInteractController : MonoBehaviour
         obj.GetComponent<CollectibleManager>().OnCollectByPlayer();
         inventory.Add(obj);
         updateHotbar();
+        if(inventory.Count==1)
+        {
+            selectedSlot = 1;
+        }
     }
 
     private void drop(int indexOf)
@@ -52,6 +82,10 @@ public class FpvInteractController : MonoBehaviour
         inventory[indexOf].GetComponent<CollectibleManager>().OnDropByPlayer(originTransform.position+(originTransform.forward*interactRange/2f));
         inventory.RemoveAt(indexOf);
         updateHotbar();
+        if(selectedSlot>inventory.Count)
+        {
+            selectedSlot = inventory.Count;
+        }
     }
 
     private void updateHotbar()
