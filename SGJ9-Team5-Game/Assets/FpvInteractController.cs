@@ -11,12 +11,16 @@ public class FpvInteractController : MonoBehaviour
     [SerializeField] private Transform originTransform;
     [SerializeField] private GameObject hotbarRoot;
     [SerializeField] private GameObject itemIconPrefab;
+    [SerializeField] private int defaultCarryingCapacity = 4;
+    [SerializeField] private int addedCarryingCapacity = 0;
+    private int carryingCapacity = 0;
     private int selectedSlot = 0;
     private List<GameObject> inventory = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         updateHotbar();
+        updateCarryingCapacity();
     }
 
     // Update is called once per frame
@@ -40,6 +44,7 @@ public class FpvInteractController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha9) && inventory.Count>=10)
         {
             selectedSlot = 10;
+            updateHotbar();
             return;
         }
         for (int i = 1; i <= inventory.Count; i++)
@@ -47,10 +52,10 @@ public class FpvInteractController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
                 selectedSlot = i;
+                updateHotbar();
                 return;
             }
         }
-        print("selected slot:" + selectedSlot);
     }
 
     void InteractWith()
@@ -74,6 +79,7 @@ public class FpvInteractController : MonoBehaviour
         if(inventory.Count==1)
         {
             selectedSlot = 1;
+            updateHotbar();
         }
     }
 
@@ -85,6 +91,7 @@ public class FpvInteractController : MonoBehaviour
         if(selectedSlot>inventory.Count)
         {
             selectedSlot = inventory.Count;
+            updateHotbar();
         }
     }
 
@@ -101,8 +108,18 @@ public class FpvInteractController : MonoBehaviour
             CollectibleManager cm = go.GetComponent<CollectibleManager>();
             // Instantiate the icon prefab
             GameObject newIcon = Instantiate(itemIconPrefab, hotbarRoot.transform);
-            newIcon.GetComponent<iconGenerator>().Generate(i+1, cm.getDisplayName(), cm.getIcon());
+            newIcon.GetComponent<iconGenerator>().Generate(i+1, cm.getDisplayName(), cm.getIcon(), i+1==selectedSlot);
             // modify the icon to show the proper number (i), name, and icon
         }
+    }
+
+    private void updateCarryingCapacity()
+    {
+        carryingCapacity = defaultCarryingCapacity + addedCarryingCapacity;
+    }
+
+    private void setAddedCarryingCapacity(int newCap)
+    {
+        addedCarryingCapacity = newCap;
     }
 }

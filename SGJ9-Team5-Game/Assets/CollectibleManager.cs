@@ -9,6 +9,8 @@ public class CollectibleManager : MonoBehaviour
     [Tooltip("Try to use an image that is 100x100 pixels")]
     [SerializeField] private Sprite icon;
     [SerializeField] private int points = 0;
+    [SerializeField] private int weight = 1; // 1-3 range of; default carry capacity of 4; +2 +4 +6 for each size of pack
+
     
     // Start is called before the first frame update
     void Start()

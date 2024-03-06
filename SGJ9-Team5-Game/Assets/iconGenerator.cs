@@ -10,6 +10,7 @@ public class iconGenerator : MonoBehaviour
     [SerializeField] private TMP_Text number;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private UnityEngine.UI.Image iconImage;
+    [SerializeField] private UnityEngine.UI.Image highlightImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +23,11 @@ public class iconGenerator : MonoBehaviour
         
     }
 
-    public void Generate(int newNumber, string newName, Sprite newIcon)
+    public void Generate(int newNumber, string newName, Sprite newIcon, bool isHighlighted)
     {
         number.text = newNumber.ToString();
         itemName.text = newName;
         iconImage.sprite = newIcon;
+        highlightImage.enabled = isHighlighted;
     }
 }
