@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
+    [SerializeField] private string displayName = "defaultName";
+    [Tooltip("Try to use an image that is 100x100 pixels")]
+    [SerializeField] private Sprite icon;
+    [SerializeField] private int points = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -30,5 +35,15 @@ public class CollectibleManager : MonoBehaviour
         or (if out of range) the hit location of a raycast pointed directly down from the first raycast's terminal point */
         gameObject.transform.position = dropPosition;
         gameObject.SetActive(true);
+    }
+
+    public Sprite getIcon()
+    {
+        return icon;
+    }
+
+    public string getDisplayName()
+    {
+        return displayName;
     }
 }
