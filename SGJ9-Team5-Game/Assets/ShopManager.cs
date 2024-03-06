@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    [SerializeField] private GameObject shopItemListRoot;
+    [SerializeField] private GameObject shopButtonPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class ShopManager : MonoBehaviour
     }
 
     void OnItemSelect()
+    {
+        //
+    }
+
+    public void GenerateShop()
     {
         //
     }

@@ -21,4 +21,9 @@ public class ButtonHandler : MonoBehaviour
     {
         mysm = parentCaller.GetComponent<ShopManager>();
     }
+
+    public void OnPressedCall()
+    {
+        //
+    }
 }
