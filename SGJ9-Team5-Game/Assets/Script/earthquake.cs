@@ -35,7 +35,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(Input.GetKeyDown("e")) 
         {
-            StartShake(2.0f, 2.0f, 0.5f);
+        float　time = Random.Range(0f, 10.0f);
+        float　power = Random.Range(0f, 10.0f);
+        float　shake = Random.Range(0f, 0.5f);
+            StartShake(time,power, shake);
             Debug.Log("Push");
         }
 
