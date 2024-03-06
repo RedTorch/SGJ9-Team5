@@ -31,7 +31,7 @@ public class test : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("あ" );
+       // Debug.Log("あ" );
         // 衝突したものがアイテムであるかチェック
             string itemName = other.gameObject.name;
 
