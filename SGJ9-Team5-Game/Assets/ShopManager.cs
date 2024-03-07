@@ -18,6 +18,7 @@ public class ShopManager : MonoBehaviour
     private List<TMP_Text> buttonLabels = new List<TMP_Text>();
     [SerializeField] private GameObject[] junkItems;
     [SerializeField] private GameObject[] usefulItems;
+    [SerializeField] private GameObject[] bags;
     [SerializeField] private List<GameObject> testList = new List<GameObject>();
 
     [SerializeField] private int money = 10000;
