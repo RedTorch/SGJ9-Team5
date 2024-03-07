@@ -35,9 +35,10 @@ public class FpvInteractController : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        RaycastHit hit;
+        if(Physics.Raycast(originTransform.position, originTransform.TransformDirection(Vector3.forward), out hit, interactRange))
         {
-            InteractWith();
+            InteractWith(hit);
         }
         checkForSelectedSlot();
         if(Input.GetKeyDown(KeyCode.Q))
@@ -67,17 +68,21 @@ public class FpvInteractController : MonoBehaviour
         }
     }
 
-    void InteractWith()
+    void InteractWith(RaycastHit hit)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(originTransform.position, originTransform.TransformDirection(Vector3.forward), out hit, interactRange))
+        if(hit.transform.gameObject.GetComponent<CollectibleManager>())
         {
-            if(hit.transform.gameObject.GetComponent<CollectibleManager>())
+            // hoverText: show item properties!!
+            if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 pickup(hit.transform.gameObject);
             }
-            // else if an interactable, etcetera, do other stuff?? such as call something on an object to turn off the breaker etc.
-            else if(hit.transform.gameObject.GetComponent<InteractableManager>())
+        }
+        // else if an interactable, etcetera, do other stuff?? such as call something on an object to turn off the breaker etc.
+        else if(hit.transform.gameObject.GetComponent<InteractableManager>())
+        {
+            // hoverText
+            if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 print("interaction initiated");
                 hit.transform.gameObject.GetComponent<InteractableManager>().OnInteract();
