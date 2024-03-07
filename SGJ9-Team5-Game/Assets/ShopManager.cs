@@ -70,14 +70,15 @@ public class ShopManager : MonoBehaviour
     
     public void OnSelectedItemBuy() // called by the "buy" button, but only valid when an item is selected
     {
-        if(currSelectedItemIndex==-1 || goods[currSelectedItemIndex]==null) // OR u dont have enough money u broke mfer
+        if(currSelectedItemIndex==-1 || goods[currSelectedItemIndex]==null || goods[currSelectedItemIndex].GetComponent<CollectibleManager>().shop_price > money) // OR u dont have enough money u broke mfer
         {
             // play the womp womp sound
             currSelectedItemIndex = -1;
             return;
         }
-        // play kaching sound
+        // play kaching sound (&& play the red glow animation, same as when u dont have the cash? or a particle effect? lol)
         // subtract the moneys
+        money -= goods[currSelectedItemIndex].GetComponent<CollectibleManager>().shop_price;
         // instantiate gameObject
         Instantiate(goods[currSelectedItemIndex],player.position+(player.forward*1f),Quaternion.identity);
         // set status to bought-- cannot be bought again
