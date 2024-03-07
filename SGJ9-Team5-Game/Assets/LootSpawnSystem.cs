@@ -43,6 +43,6 @@ public class LootSpawnSystem : MonoBehaviour
     {
         Transform rtrans = spawnLocations[UnityEngine.Random.Range(0,spawnLocations.Length-1)];
         Vector3 retVal = rtrans.position + (Vector3.right*rtrans.localScale.x*UnityEngine.Random.Range(-1f,1f)) + (Vector3.forward*rtrans.localScale.z*UnityEngine.Random.Range(-1f,1f));
-        return Vector3.zero;
+        return retVal;
     }
 }

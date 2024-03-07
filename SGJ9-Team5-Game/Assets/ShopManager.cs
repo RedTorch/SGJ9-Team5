@@ -28,7 +28,7 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateShop(testList); //in actual game, GenerateShop will be called externally by the class that scatters objects, so that the leftovers can be sold in the shop
+        // GenerateShop(testList); //in actual game, GenerateShop will be called externally by the class that scatters objects, so that the leftovers can be sold in the shop
         gameObject.SetActive(false);
     }
 
