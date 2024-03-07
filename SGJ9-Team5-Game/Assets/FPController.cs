@@ -45,8 +45,8 @@ public class FPController : MonoBehaviour
         {
             return;
         }
-        CurrLookRotation.x += Input.GetAxis("Mouse X") * LookSpeed;
-        CurrLookRotation.y = Mathf.Clamp(CurrLookRotation.y + (Input.GetAxis("Mouse Y") * LookSpeed),-80f,80f);
+        CurrLookRotation.x += Input.GetAxisRaw("Mouse X") * LookSpeed;
+        CurrLookRotation.y = Mathf.Clamp(CurrLookRotation.y + (Input.GetAxisRaw("Mouse Y") * LookSpeed),-80f,80f);
         transform.localRotation = Quaternion.Euler(0f,CurrLookRotation.x,0f);
         camroot.transform.localRotation = Quaternion.Euler(-1f * CurrLookRotation.y, 0f, 0f);
         
@@ -73,6 +73,8 @@ public class FPController : MonoBehaviour
             // rb.velocity = (transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z);
             // rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity);
             rb.AddForce((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z) - rb.velocity, ForceMode.VelocityChange);
+            // Vector3 newp = transform.position + ((transform.right * CurrVelocity.x) + (transform.forward * CurrVelocity.z))*Time.deltaTime;
+            // rb.MovePosition(newp);
         }
     }
 
