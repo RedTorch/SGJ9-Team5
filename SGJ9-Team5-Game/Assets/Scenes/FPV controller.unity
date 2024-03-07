@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52328223, g: 0.56080323, b: 0.47685975, a: 1}
+  m_IndirectSpecularColor: {r: 0.52412844, g: 0.5618112, b: 0.47702503, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4659,11 +4659,18 @@ MonoBehaviour:
   buyText: {fileID: 422706540}
   player: {fileID: 682196638}
   junkItems:
-  - {fileID: 1838673814}
-  - {fileID: 7072169418746849701, guid: bd5d7d0a5d8904763a2d2aa57bd4e459, type: 3}
+  - {fileID: 4335296693833986045, guid: 823618c966a60bd4a964915f3497dc18, type: 3}
   usefulItems:
-  - {fileID: 7072169418746849701, guid: bd5d7d0a5d8904763a2d2aa57bd4e459, type: 3}
-  - {fileID: 1838673814}
+  - {fileID: 690727525797229817, guid: 0c03f538bcf1d71458fcce213c059702, type: 3}
+  - {fileID: 4947317223220843384, guid: c4eb63353cc062b44ba0130932e4b74f, type: 3}
+  - {fileID: 6560920951125842823, guid: 4ee455aba8860c24f8559a251a830d93, type: 3}
+  - {fileID: 3032875681494271216, guid: f91357c3906ca434b842e980d075505d, type: 3}
+  - {fileID: 8594793137923908400, guid: ed5c2864d89488d4ba913dcf5d40ae1d, type: 3}
+  - {fileID: 3493048315491332693, guid: a5692252a65d2784fad5bd6673ab750f, type: 3}
+  - {fileID: 654805598974920636, guid: a411e8b763090024f81e681d34afbf85, type: 3}
+  - {fileID: 8826146998016674717, guid: 26b6a88c608b8aa41960e59a37bc9659, type: 3}
+  - {fileID: 1279140426991430450, guid: 360690a7c06559a4f927c76899139848, type: 3}
+  - {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
   testList:
   - {fileID: 7072169418746849701, guid: a6e344a29decc42109abf2a2388149d9, type: 3}
   - {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
@@ -8555,12 +8562,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b6a88c608b8aa41960e59a37bc9659, type: 3}
---- !u!1 &1838673814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8826146998016674717, guid: 26b6a88c608b8aa41960e59a37bc9659,
-    type: 3}
-  m_PrefabInstance: {fileID: 1838673813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1839873655
 GameObject:
   m_ObjectHideFlags: 0
