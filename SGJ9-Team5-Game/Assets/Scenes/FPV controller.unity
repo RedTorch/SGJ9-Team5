@@ -10921,11 +10921,11 @@ MonoBehaviour:
   - {fileID: 2019486849}
   - {fileID: 45103560}
   vitalItems:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 690727525797229817, guid: 0c03f538bcf1d71458fcce213c059702, type: 3}
+  - {fileID: 7072169418746849701, guid: a6e344a29decc42109abf2a2388149d9, type: 3}
   junkItems:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3946347247524181673, guid: 7a2ee891b80e849e494599044ac9ca54, type: 3}
+  - {fileID: 4335296693833986045, guid: 823618c966a60bd4a964915f3497dc18, type: 3}
   amountOfJunk: 10
   mySm: {fileID: 835352974}
 --- !u!4 &1235595963
