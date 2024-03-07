@@ -57,7 +57,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnItemSelect(int indexOfItem) // called by individual sold item buttons
     {
-        // prevent selection if the item is sold out; display message
+        // TODO: prevent selection if the item is sold out; display message
         if(goods[indexOfItem]==null)
         {
             currSelectedItemIndex = -1;
