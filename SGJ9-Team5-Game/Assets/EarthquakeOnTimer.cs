@@ -35,11 +35,11 @@ public class EarthquakeOnTimer : MonoBehaviour
     {
         if(Input.GetKeyDown("e")) 
         {
-        float　time = Random.Range(0f, 10.0f);
-        float　power = Random.Range(0f, 10.0f);
-        float　shake = Random.Range(0f, 0.5f);
-            StartShake(time,power, shake);
-            Debug.Log("Push");
+            float time = Random.Range(0f, 10.0f);
+            float power = Random.Range(0f, 10.0f);
+            float shake = Random.Range(0f, 0.5f);
+            // StartShake(time,power, shake);
+            // Debug.Log("Push");
         }
 
         if (!_isDoShake) return;
@@ -62,7 +62,7 @@ public class EarthquakeOnTimer : MonoBehaviour
         }
     }
 
- public void StartShake(float duration, float strength, float vibrato)
+    public void StartShake(float duration, float strength, float vibrato)
     {
 
         // 揺れ情報を設定して開始

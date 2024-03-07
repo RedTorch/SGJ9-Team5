@@ -6182,6 +6182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235595963}
   - component: {fileID: 1235595962}
+  - component: {fileID: 1235595964}
   m_Layer: 0
   m_Name: SCRIPT
   m_TagString: Untagged
@@ -6203,14 +6204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocations:
   - {fileID: 74123081}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   vitalItems:
   - {fileID: 690727525797229817, guid: 0c03f538bcf1d71458fcce213c059702, type: 3}
   - {fileID: 7072169418746849701, guid: a6e344a29decc42109abf2a2388149d9, type: 3}
@@ -6234,6 +6227,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1235595964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235595961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cd396e691004d5a9ca02cd970ef11a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earthquakeBaseTime: 40
+  earthquakeVariance: 20
+  collapseBaseTime: 5
+  collapseVariance: 15
+  myEot: {fileID: 1401652635}
 --- !u!1 &1271447370
 GameObject:
   m_ObjectHideFlags: 0
@@ -7431,6 +7441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401652634}
   - component: {fileID: 1401652635}
+  - component: {fileID: 1401652636}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -7457,6 +7468,18 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1401652635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401652633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4685275aafa5e43e591e47811f9d2ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1401652636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

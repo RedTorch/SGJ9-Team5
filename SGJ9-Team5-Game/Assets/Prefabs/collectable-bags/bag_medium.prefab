@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3920094884273981796}
   - component: {fileID: 4790124920857310314}
   m_Layer: 0
-  m_Name: Backpack
+  m_Name: bag_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
