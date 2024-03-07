@@ -7,7 +7,7 @@ public class LootSpawnSystem : MonoBehaviour
     [SerializeField] private Vector3[] SpawnLocations;
     [SerializeField] private GameObject[] vitalItems;
     [SerializeField] private GameObject[] junkItems; // spawned at random with equal chance
-    [SerializeField] private float amountOf
+    // [SerializeField] private float amountOf
     // Start is called before the first frame update
     void Start()
     {
