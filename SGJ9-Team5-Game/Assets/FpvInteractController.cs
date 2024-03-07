@@ -14,6 +14,7 @@ public class FpvInteractController : MonoBehaviour
     [SerializeField] private GameObject hotbarRoot;
     [SerializeField] private GameObject itemIconPrefab;
     [SerializeField] private TMP_Text weightText;
+    [SerializeField] private TMP_Text hoverText;
     [SerializeField] private int defaultCarryingCapacity = 4;
     [SerializeField] private int addedCarryingCapacity = 0;
     private int carryingCapacity = 0;
@@ -36,6 +37,7 @@ public class FpvInteractController : MonoBehaviour
             return;
         }
         RaycastHit hit;
+        hoverText.text = "";
         if(Physics.Raycast(originTransform.position, originTransform.TransformDirection(Vector3.forward), out hit, interactRange))
         {
             InteractWith(hit);
@@ -73,6 +75,7 @@ public class FpvInteractController : MonoBehaviour
         if(hit.transform.gameObject.GetComponent<CollectibleManager>())
         {
             // hoverText: show item properties!!
+            hoverText.text = hit.transform.gameObject.GetComponent<CollectibleManager>().GetHoverText();
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 pickup(hit.transform.gameObject);
@@ -82,6 +85,7 @@ public class FpvInteractController : MonoBehaviour
         else if(hit.transform.gameObject.GetComponent<InteractableManager>())
         {
             // hoverText
+            hoverText.text = hit.transform.gameObject.GetComponent<InteractableManager>().GetHoverText();//"インタラクト[LMB]";
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 print("interaction initiated");

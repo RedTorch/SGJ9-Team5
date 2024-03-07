@@ -22,4 +22,9 @@ public class Interactable_Laptop : InteractableManager
         print("OnInteract initiated in Interactable_Laptop");
         mySman.OnShopEnter();
     }
+
+    public override string GetHoverText()
+    {
+        return "PCを使う[LMB]";
+    }
 }

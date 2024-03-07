@@ -48,4 +48,25 @@ public class CollectibleManager : MonoBehaviour
     {
         return displayName;
     }
+
+    public string GetHoverText()
+    {
+        return "とる[LMB]\n" + displayName + "\n重さ： " + weightDisplayText();
+    }
+
+    private string weightDisplayText()
+    {
+        switch(weight)
+        {
+            case 1:
+                return "軽い";
+            case 2:
+                return "普通";
+            case 3:
+                return "思い";
+            default:
+                return "？？？";
+        }
+    }
+
 }

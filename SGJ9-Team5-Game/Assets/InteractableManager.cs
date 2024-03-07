@@ -20,4 +20,9 @@ public class InteractableManager : MonoBehaviour
     {
         print("Interaction initiated in InteractableManager");
     }
+
+    public virtual string GetHoverText()
+    {
+        return "インタラクト[LMB]";
+    }
 }
