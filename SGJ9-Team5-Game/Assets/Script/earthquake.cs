@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public  bool start = false;
     private struct ShakeInfo
     {
         public ShakeInfo(float duration, float strength, float vibrato)
@@ -22,6 +23,8 @@ public class NewBehaviourScript : MonoBehaviour
     private Vector3 _initPosition; // 初期位置
     private bool _isDoShake;       // 揺れ実行中か？
     private float _totalShakeTime; // 揺れ経過時間
+   
+    
 
 
     // Start is called before the first frame update
@@ -33,13 +36,14 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("e")) 
+        if(start) 
         {
         float　time = Random.Range(0f, 10.0f);
         float　power = Random.Range(0f, 10.0f);
         float　shake = Random.Range(0f, 0.5f);
             StartShake(time,power, shake);
             Debug.Log("Push");
+            start = false;
         }
 
         if (!_isDoShake) return;
@@ -94,3 +98,4 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
 }
+
