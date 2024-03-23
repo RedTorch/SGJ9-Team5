@@ -22,6 +22,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private List<GameObject> testList = new List<GameObject>();
 
     [SerializeField] private int money = 10000;
+    [SerializeField] private CursorLockBehavior myClb;
     private float chanceOfGettingUseful = 0.4f;
     private int maxShopItems = 8;
     private int currSelectedItemIndex = -1;
@@ -40,20 +41,16 @@ public class ShopManager : MonoBehaviour
 
     public void OnShopEnter()
     {
+        print("onshopenter called, being activated");
         gameObject.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        player.gameObject.GetComponent<FPController>().setFreeze(true);
-        player.gameObject.GetComponent<FpvInteractController>().setFreeze(true);
+        print("activation complete");
+        myClb.SetLock(true);
     }
 
     public void OnShopExit()
     {
         gameObject.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        player.gameObject.GetComponent<FPController>().setFreeze(false);
-        player.gameObject.GetComponent<FpvInteractController>().setFreeze(false);
+        myClb.SetLock(false);
     }
 
     public void OnItemSelect(int indexOfItem) // called by individual sold item buttons
