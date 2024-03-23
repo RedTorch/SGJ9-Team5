@@ -24,7 +24,7 @@ public class FpvInteractController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        updateHotbar();
+        updateHotbar(hotbarRoot);
         updateWeight();
     }
 
@@ -55,7 +55,7 @@ public class FpvInteractController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha9) && inventory.Count>=10)
         {
             selectedSlot = 10;
-            updateHotbar();
+            updateHotbar(hotbarRoot);
             return;
         }
         for (int i = 1; i <= inventory.Count; i++)
@@ -63,7 +63,7 @@ public class FpvInteractController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha0 + i))
             {
                 selectedSlot = i;
-                updateHotbar();
+                updateHotbar(hotbarRoot);
                 return;
             }
         }
@@ -102,7 +102,7 @@ public class FpvInteractController : MonoBehaviour
         }
         obj.GetComponent<CollectibleManager>().OnCollectByPlayer();
         inventory.Add(obj);
-        updateHotbar();
+        updateHotbar(hotbarRoot);
         if(inventory.Count==1)
         {
             selectedSlot = 1; 
@@ -121,11 +121,11 @@ public class FpvInteractController : MonoBehaviour
         updateOnPickupDrop();
     }
 
-    private void updateHotbar()
+    public void updateHotbar(GameObject rootToUpdate)
     {
         // remove all elements in the hotbar
         var children = new List<GameObject>();
-        foreach (Transform child in hotbarRoot.transform) children.Add(child.gameObject);
+        foreach (Transform child in rootToUpdate.transform) children.Add(child.gameObject);
         children.ForEach(child => Destroy(child));
         // use inventory[] to generate the icons and names of the objects
         for(int i = 0; i < inventory.Count; i++)
@@ -133,8 +133,8 @@ public class FpvInteractController : MonoBehaviour
             GameObject go = inventory[i];
             CollectibleManager cm = go.GetComponent<CollectibleManager>();
             // Instantiate the icon prefab
-            GameObject newIcon = Instantiate(itemIconPrefab, hotbarRoot.transform);
-            newIcon.GetComponent<iconGenerator>().Generate(i+1, cm.getDisplayName(), cm.getIcon(), i+1==selectedSlot);
+            GameObject newIcon = Instantiate(itemIconPrefab, rootToUpdate.transform);
+            newIcon.GetComponent<iconGenerator>().Generate(i+1, cm.getDisplayName(), cm.getIcon(), i+1==selectedSlot && rootToUpdate==hotbarRoot, cm.GetScore());
             // modify the icon to show the proper number (i), name, and icon
         }
     }
@@ -152,12 +152,22 @@ public class FpvInteractController : MonoBehaviour
 
     private void updateOnPickupDrop()
     {
-        updateHotbar();
+        updateHotbar(hotbarRoot);
         updateWeight();
     }
 
     public void setFreeze(bool set)
     {
         isFrozen = set;
+    }
+
+    public int GetScore()
+    {
+        int score = 0;
+        foreach(GameObject go in inventory)
+        {
+            score += go.GetComponent<CollectibleManager>().GetScore();
+        }
+        return score;
     }
 }

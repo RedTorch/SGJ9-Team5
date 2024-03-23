@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class CollectibleManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class CollectibleManager : MonoBehaviour
     public string GetHoverText()
     {
         return "とる[LMB]\n" + displayName + "\n重さ： " + weightDisplayText();
+    }
+
+    public int GetScore()
+    {
+        return points;
     }
 
     private string weightDisplayText()

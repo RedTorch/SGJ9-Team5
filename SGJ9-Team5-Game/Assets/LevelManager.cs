@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float collapseBaseTime = 5f;
     [SerializeField] private float collapseVariance = 15f;
     [SerializeField] private EarthquakeOnTimer myEot;
+    [SerializeField] private CursorLockBehavior myClb;
     private bool isActive = true; // set false if the game is completed successfully and you want to stop the earthquake action from progressing
 
     // we should develop a system to allow this to be set from an inter-scene data object (so you can select difficulty from main menu, ubnlock harder difficulties, etc.)
@@ -48,10 +49,21 @@ public class LevelManager : MonoBehaviour
         {
             if(levelTime >= collapseTime)
             {
-                int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(sceneIndex);
-                // TODO: call gameOver (cut to black, "you took too long!" message is displayed; try again OR return to menu from here)
+                ResetScene();
             }
         }
+    }
+
+    public void ResetScene()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneIndex);
+        myClb.SetLock(false);
+        // TODO: call gameOver (cut to black, "you took too long!" message is displayed; try again OR return to menu from here)
+    }
+
+    public void EndGame()
+    {
+        isActive = false;
     }
 }
